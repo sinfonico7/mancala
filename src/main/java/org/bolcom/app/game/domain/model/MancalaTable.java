@@ -1,0 +1,1 @@
+package org.bolcom.app.game.domain.model;public class MancalaTable {}

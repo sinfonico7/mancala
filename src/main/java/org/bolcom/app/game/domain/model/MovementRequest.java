@@ -1,0 +1,1 @@
+package org.bolcom.app.game.domain.model;import lombok.Builder;import lombok.Data;@Data@Builderpublic class MovementRequest {    private String playerName;    private int selectedPotIndex;}

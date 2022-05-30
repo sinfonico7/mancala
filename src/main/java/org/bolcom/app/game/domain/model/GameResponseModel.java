@@ -1,1 +1,0 @@
-package org.bolcom.app.game.domain.model;public abstract class GameResponseModel {}

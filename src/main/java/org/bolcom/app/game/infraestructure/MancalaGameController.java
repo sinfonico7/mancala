@@ -12,21 +12,18 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/games/mancala")
 public class MancalaGameController {
 
-
     private final Rules mancalaGameUseCase;
 
-    @CrossOrigin
-    @RequestMapping(value="/startGame", produces = { "application/json" } )
-    //@PostMapping(value="/startGame", produces = { "application/json" } )
+    @PostMapping(value="/startGame", produces = { "application/json" } )
     public MancalaGameResponse startGame(@RequestBody List<MancalaPlayer> players){
         return mancalaGameUseCase.initGame(players);
     }
-    @CrossOrigin
-    @RequestMapping(value = "/MakeMove")
-    //@PatchMapping(value = "/MakeMove")
+
+    @PatchMapping(value = "/MakeMove")
     public MancalaGameResponse makeMove(@RequestBody MovementRequest request){
         return mancalaGameUseCase.makeMove(request);
     }

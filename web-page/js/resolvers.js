@@ -17,7 +17,7 @@ const startGame = () => {
     $("#players-data").hide();
     fetch("http://localhost:8080/api/v1/games/mancala/startGame", {
         method: "POST",
-        headers: {'Content-Type': 'application/json'}, 
+        headers: {'Content-Type': 'application/json','Access-Control-Allow-Origin':'http://localhost:8080'}, 
         body: JSON.stringify(players)
       }).then(res => res.json())
       .then(data => {
@@ -52,7 +52,7 @@ const playerAMakeMove = () => {
 
 const makeMove = (movementReq) => {
     fetch("http://localhost:8080/api/v1/games/mancala/MakeMove", {
-        method: "POST",
+        method: "PATCH",
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(movementReq)
       }).then(res => res.json())

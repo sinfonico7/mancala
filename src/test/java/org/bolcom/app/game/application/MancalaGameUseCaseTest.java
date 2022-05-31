@@ -73,7 +73,7 @@ public class MancalaGameUseCaseTest {
         Integer[] tableBeforeSteal = new Integer[]{6,2,6,0,6,6,0,6,6,6,6,6,6,0};
         MancalaGameUseCase mancalaGameUseCase = new MancalaGameUseCase(players,tableBeforeSteal);
 
-        Integer[] tableAfterSteal = new Integer[]{6,0,7,0,6,6,7,6,6,0,6,6,6,0};
+        Integer[] tableAfterSteal = new Integer[]{6,0,7,0,6,6,7,6,6,6,0,6,6,0};
         assertArrayEquals(tableAfterSteal,mancalaGameUseCase.makeMove(movement).getTable());
     }
 
@@ -97,7 +97,7 @@ public class MancalaGameUseCaseTest {
         Integer[] tableBeforeSteal = new Integer[]{6,6,6,6,6,6,0,6,2,6,0,6,6,0};
         MancalaGameUseCase mancalaGameUseCase = new MancalaGameUseCase(players,tableBeforeSteal);
 
-        Integer[] tableAfterSteal =  new Integer[]{6,6,0,6,6,6,0,6,0,7,0,6,6,7};
+        Integer[] tableAfterSteal =  new Integer[]{6,6,6,0,6,6,0,6,0,7,0,6,6,7};
         assertArrayEquals(mancalaGameUseCase.makeMove(movement).getTable(),tableAfterSteal);
         assertTrue(player2.isAbleToMove());
     }

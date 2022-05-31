@@ -14,6 +14,7 @@ const startGame = () => {
     players.push(playerA,playerB);
    
     $('#game-table').show();
+    $("#players-data").hide();
     fetch("http://localhost:8080/api/v1/games/mancala/startGame", {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 
@@ -22,7 +23,7 @@ const startGame = () => {
       .then(data => {
          //console.log(data)
          paintTable(data);
-         $("#players-data").hide();
+         
          $("#player-p-a-name").text(playerA.playerName);
         $("#player-p-b-name").text(playerB.playerName);
 

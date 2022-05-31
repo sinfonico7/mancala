@@ -55,16 +55,19 @@ public class MancalaGameUseCase implements Rules {
     }
 
     private MancalaGameResponse checkHwoPlayNext(MancalaPlayer player) {
+        MancalaGameResponse mancalaGameResponse = MancalaGameResponse.builder()
+                .state("IN_PROGRESS")
+                .build();
         if(player.isAbleToMove()==false){
             giveTurnToOpponent(player);
         }
         if(noMoreStonesToMove(player)){
             stopGame();
+            mancalaGameResponse.setState("FINISHED");
         }
-        return MancalaGameResponse.builder()
-                .players(new ArrayList<>(players.values()))
-                .table(table)
-                .build();
+        mancalaGameResponse.setPlayers(new ArrayList<>(players.values()));
+        mancalaGameResponse.setTable(table);
+        return mancalaGameResponse;
     }
 
     private boolean wasPutOnABigPot(MancalaPlayer player, int lastStoneWherePutOn) {
@@ -139,8 +142,8 @@ public class MancalaGameUseCase implements Rules {
         final int AREA_POTS_LENGTH = 6;
         int playerAreaAStartIndex = player.getStartIndexTable();
         List<Integer> playerPots = Arrays.asList(table);
-        boolean stonesOnAreaAisEmpty = playerPots.subList(playerAreaAStartIndex,playerAreaAStartIndex+AREA_POTS_LENGTH).isEmpty();
-        return stonesOnAreaAisEmpty;
+        int qtyOfStones = playerPots.subList(playerAreaAStartIndex,playerAreaAStartIndex+AREA_POTS_LENGTH).stream().mapToInt(o -> o.intValue()).sum();
+        return qtyOfStones == 0;
     }
 
     private boolean isTheOwnerArea(MancalaPlayer player, int wherePretendPickUp){

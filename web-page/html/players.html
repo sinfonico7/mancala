@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Players</h1>
+    <h1>Super Mancala</h1>
     <div id="players-data">
         <div id="player-1-data">
             <label for="player-a-name">Player A Name</label>
@@ -24,69 +24,77 @@
     </div>
     <br/>
     <div id="game-table">
-        <p id="player-p-b-name">Player B</p>
-        <button id="b_button" onclick="playerBMakeMove()">Make Move</button>
+        
+        <div id="playerb-resume">
+            <p id="player-p-b-name">Player B</p>
+            <button id="b_button" onclick="playerBMakeMove()">Make Move</button>
+        </div>
         <br>
-        <table>
-            
-            <tr>
-              <td id="player-b-bp" rowspan="2"></td>
-              <td >
-                  <div id="indx-b-12"></div>
-                  <input type="radio" id="b_area_12" name="b_area" value="12"/>
-              </td>
-              <td >
-                  <div id="indx-b-11"></div>
-                  <input type="radio" id="b_area_11" name="b_area" value="11"/>
-              </td>
-              <td >
-                  <div id="indx-b-10"></div>
-                  <input type="radio" id="b_area_10" name="b_area" value="10"/>
-              </td>
-              <td >
-                <div id="indx-b-9"></div>
-                <input type="radio" id="b_area_9" name="b_area" value="9"/>
-              </td>
-              <td >
-                  <div id="indx-b-8"></div>
-                  <input type="radio" id="b_area_8" name="b_area" value="8"/>
-              </td>
-              <td >
-                  <div id="indx-b-7"></div>
-                  <input type="radio" id="b_area_7" name="b_area" value="7"/>
-              </td>
-            </tr>
-            <tr>                
-                <td >
-                    <div id="indx-a-0"></div>
-                    <input type="radio" id="0" name="a_area" value="0"/>
-                </td>                
-                <td >
-                    <div id="indx-a-1"></div>
-                    <input type="radio" id="1" name="a_area" value="1"/>
+            <table>
+                
+                <tr>
+                <td id="player-b-bp" ></td>
+                <td class="b-td">
+                    <div id="indx-b-12"></div>
+                    <input type="radio" id="b_area_12" name="b_area" value="12"/>
                 </td>
-                <td >
-                    <div id="indx-a-2"></div>
-                    <input type="radio" id="2" name="a_area" value="2"/>
+                <td class="b-td">
+                    <div id="indx-b-11"></div>
+                    <input type="radio" id="b_area_11" name="b_area" value="11"/>
                 </td>
-                <td >
-                    <div id="indx-a-3"></div>
-                    <input type="radio" id="3" name="a_area" value="3"/>
+                <td class="b-td">
+                    <div id="indx-b-10"></div>
+                    <input type="radio" id="b_area_10" name="b_area" value="10"/>
                 </td>
-                <td>
-                    <div id="indx-a-4"></div>
-                    <input type="radio" id="4" name="a_area" value="4"/>
+                <td class="b-td">
+                    <div id="indx-b-9"></div>
+                    <input type="radio" id="b_area_9" name="b_area" value="9"/>
                 </td>
-                <td >
-                    <div id="indx-a-5"></div>
-                    <input type="radio" id="5" name="a_area" value="5"/>
+                <td class="b-td">
+                    <div id="indx-b-8"></div>
+                    <input type="radio" id="b_area_8" name="b_area" value="8"/>
                 </td>
-                <td id="player-a-bp" rowspan="2"></td>
-            </tr>
-            
-          </table>
-          <p id="player-p-a-name">Player A</p>
-          <button id="a_button" onclick="playerAMakeMove()">Make Move</button>
+                <td class="b-td">
+                    <div id="indx-b-7"></div>
+                    <input type="radio" id="b_area_7" name="b_area" value="7"/>
+                </td>
+                </tr>
+                <tr>                
+                    <td class="a-td">
+                        <div id="indx-a-0"></div>
+                        <input type="radio" id="0" name="a_area" value="0"/>
+                    </td>                
+                    <td class="a-td">
+                        <div id="indx-a-1"></div>
+                        <input type="radio" id="1" name="a_area" value="1"/>
+                    </td>
+                    <td class="a-td">
+                        <div id="indx-a-2"></div>
+                        <input type="radio" id="2" name="a_area" value="2"/>
+                    </td>
+                    <td class="a-td">
+                        <div id="indx-a-3"></div>
+                        <input type="radio" id="3" name="a_area" value="3"/>
+                    </td>
+                    <td class="a-td">
+                        <div id="indx-a-4"></div>
+                        <input type="radio" id="4" name="a_area" value="4"/>
+                    </td>
+                    <td class="a-td">
+                        <div id="indx-a-5"></div>
+                        <input type="radio" id="5" name="a_area" value="5"/>
+                    </td>
+                    <td id="player-a-bp" rowspan="2"></td>
+                </tr>
+                
+            </table>
+            <div id="player-a-resume">
+                <p id="player-p-a-name">Player A</p>
+                <button id="a_button" onclick="playerAMakeMove()">Make Move</button>
+            </div>
     </div>
 </body>
+<script type="text/javascript">
+    $('#game-table').hide();
+  </script>
 </html>

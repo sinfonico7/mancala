@@ -7,9 +7,13 @@ const startGame = () => {
     const playerB = {
         playerName : document.getElementById('player-b-name').value
     }
+    if(playerA.playerName === '' || playerB.playerName === ''){
+        alert('You have to set the names of the players');
+        return;
+    }
     players.push(playerA,playerB);
    
-    
+    $('#game-table').show();
     fetch("http://localhost:8080/api/v1/games/mancala/startGame", {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 

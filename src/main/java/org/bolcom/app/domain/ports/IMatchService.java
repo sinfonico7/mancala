@@ -1,4 +1,4 @@
-package org.bolcom.app.domain.adapters;
+package org.bolcom.app.domain.ports;
 
 import org.bolcom.app.domain.models.Match;
 

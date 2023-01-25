@@ -1,6 +1,6 @@
 package org.bolcom.app.application.services;
 
-import org.bolcom.app.domain.adapters.IMatchService;
+import org.bolcom.app.domain.ports.IMatchService;
 import org.bolcom.app.domain.exceptions.UserException;
 import org.bolcom.app.domain.models.Match;
 import org.bolcom.app.infrastracture.entities.UserEntity;

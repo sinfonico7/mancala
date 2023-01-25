@@ -1,6 +1,6 @@
 package org.bolcom.app.infrastracture.web;
 
-import org.bolcom.app.domain.adapters.IMatchService;
+import org.bolcom.app.domain.ports.IMatchService;
 import org.bolcom.app.domain.models.Match;
 import org.springframework.web.bind.annotation.RestController;
 

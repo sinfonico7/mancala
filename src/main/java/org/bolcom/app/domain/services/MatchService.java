@@ -1,10 +1,10 @@
-package org.bolcom.app.application.services;
+package org.bolcom.app.domain.services;
 
 import org.bolcom.app.domain.ports.IMatchService;
 import org.bolcom.app.domain.exceptions.UserException;
 import org.bolcom.app.domain.models.Match;
 import org.bolcom.app.infrastracture.entities.UserEntity;
-import org.bolcom.app.infrastracture.repositories.JPAMatchRepository;
+import org.bolcom.app.infrastracture.repositories.JPAUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class MatchService implements IMatchService {
 
     @Autowired
-    private JPAMatchRepository repository;
+    private JPAUserRepository repository;
     @Override
     public Match getMatch(String firstPlayerEmail,String secondPlayerEmail) {
         Optional<UserEntity> firstUser = repository.findById(firstPlayerEmail);

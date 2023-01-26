@@ -1,4 +1,4 @@
-package org.bolcom.app.infrastracture.web;
+package org.bolcom.app.application.controllers;
 
 import org.bolcom.app.domain.ports.IMatchService;
 import org.bolcom.app.domain.models.Match;

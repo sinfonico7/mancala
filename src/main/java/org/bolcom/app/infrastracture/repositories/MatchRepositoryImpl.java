@@ -1,5 +1,6 @@
 package org.bolcom.app.infrastracture.repositories;
 
+import org.bolcom.app.domain.enums.MatchStatus;
 import org.bolcom.app.domain.exceptions.MatchException;
 import org.bolcom.app.domain.models.Match;
 import org.bolcom.app.domain.models.Player;
@@ -62,14 +63,21 @@ public class MatchRepositoryImpl implements MatchRepository{
         Match matchUpdated = match.makeMove(player,from);
         matchEntity.get().setStatus(matchUpdated.getStatus());
         List<PlayerEntity> players = matchEntity.get().getPlayers();
-        players.clear();
-        players.add(PlayerEntity.from(matchUpdated.getFirstPlayer()));
-        players.add(PlayerEntity.from(matchUpdated.getSecondPlayer()));
+        PlayerEntity first = PlayerEntity.getPlayerFirst(players);
+        first.setMatch(matchEntity.get());
+        first.setPits(PitsEntity.from(matchUpdated.getFirstPlayer().getPits()));
+        first.setCanPLay(matchUpdated.getFirstPlayer().isCanPlay());
+
+        PlayerEntity second = PlayerEntity.getPlayerSecond(players);
+        second.setMatch(matchEntity.get());
+        second.setPits(PitsEntity.from(matchUpdated.getSecondPlayer().getPits()));
+        second.setCanPLay(matchUpdated.getSecondPlayer().isCanPlay());
+
+
         matchEntity.get().setPlayers(players);
+        MatchEntity me = matchRepository.save(matchEntity.get());
 
-
-
-        return matchRepository.save(matchEntity.get()).toMatch();
+        return new Match(first.toPlayer(),second.toPlayer(), me.getStatus(),match.getUuid());
     }
 
 

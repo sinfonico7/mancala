@@ -75,6 +75,26 @@ public class PlayerEntity {
         this.pits = pits;
     }
 
+    public void setMatch(MatchEntity match) {
+        this.match = match;
+    }
+
+    public void setCanPLay(boolean canPLay) {
+        this.canPLay = canPLay;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setFirst(boolean first) {
+        isFirst = first;
+    }
+
     public static PlayerEntity getPlayerFirst(List<PlayerEntity> players) {
         return players.stream().filter(PlayerEntity::isFirst).findAny().get();
     }

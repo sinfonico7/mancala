@@ -1,10 +1,7 @@
 package org.bolcom.app.infrastracture.entities;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.bolcom.app.domain.enums.MatchStatus;
 import org.bolcom.app.domain.models.Match;
 import org.bolcom.app.domain.models.Player;
@@ -13,7 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 import java.util.stream.Collectors;
 
 @Entity
@@ -36,12 +33,6 @@ public class MatchEntity implements Serializable {
     @OneToMany(mappedBy = "match", cascade = CascadeType.PERSIST)
     private List<PlayerEntity> players;
 
- /*   @OneToOne(targetEntity = PlayerEntity.class, mappedBy = "match", cascade = {CascadeType.ALL},orphanRemoval = true)
-    private PlayerEntity playerEntityOne;
-
-    @OneToOne(targetEntity = PlayerEntity.class, mappedBy = "match", cascade = {CascadeType.ALL},orphanRemoval = true)
-    private PlayerEntity playerEntityTwo;
-*/
 
     public MatchEntity() {
         this.status = MatchStatus.RUNNING;

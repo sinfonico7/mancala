@@ -8,6 +8,7 @@ import java.util.UUID;
 public class Player {
 
     private UUID id;
+    @JsonIgnore
     private boolean isFirst;
     @JsonIgnore
     private User user;

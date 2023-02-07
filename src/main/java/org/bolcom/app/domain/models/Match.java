@@ -9,7 +9,6 @@ import java.util.stream.IntStream;
 public class Match {
     private Long uuid;
     private final int LAST_PIT = 5;
-    private final int FIRST_PIT = 0;
     private MatchStatus status;
     private final Player firstPlayer;
     private final Player secondPlayer;
@@ -47,12 +46,12 @@ public class Match {
 
     public Match makeMove(Player player, int from){
 
-        if(player.isCanPlay()==false) throw new MatchException(String.format("[makeMove] The User %s",player.getUser().getEmail()),409);
+        if(!player.isCanPlay()) throw new MatchException(String.format("[makeMove] The User %s cant play this turn",player.getUser().getEmail()),409);
 
         int stonesQty = player.getPits().pickStones(from);
-        // table is counting from 1 to 6 the big pit is 7
+
         boolean getOponentSide = false;
-        //--from;
+
         for (int i = stonesQty ; i>0; i--){
             stonesQty--;
             if(from==LAST_PIT) {

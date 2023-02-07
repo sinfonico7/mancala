@@ -48,12 +48,13 @@ public class MatchTests {
         Match match = new Match(new User(new Email("firstPlayer@nerdapps.com")),new User(new Email("secondPlayer@nerdapps.com")));
         match.makeMove(match.getFirstPlayer(),0);
         Assert.assertEquals(1,match.getFirstPlayer().getPits().getBigPit());
-            Assert.assertEquals(0,match.getFirstPlayer().getPits().getLittlePits()[0]);
+        Assert.assertEquals(0,match.getFirstPlayer().getPits().getLittlePits()[0]);
         Assert.assertEquals(7,match.getFirstPlayer().getPits().getLittlePits()[1]);
         Assert.assertEquals(7,match.getFirstPlayer().getPits().getLittlePits()[2]);
         Assert.assertEquals(7,match.getFirstPlayer().getPits().getLittlePits()[3]);
         Assert.assertEquals(7,match.getFirstPlayer().getPits().getLittlePits()[4]);
         Assert.assertEquals(7,match.getFirstPlayer().getPits().getLittlePits()[5]);
+        Assert.assertEquals(true,match.getFirstPlayer().isCanPlay());
 
     }
 

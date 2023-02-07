@@ -20,13 +20,11 @@ public class MatchRepositoryImpl implements MatchRepository{
 
 
     private final JPAMatchRepository matchRepository;
-    private final JPAPlayerRerpository playerRerpository;
 
 
     @Autowired
-    public MatchRepositoryImpl(JPAMatchRepository matchRepository, JPAPlayerRerpository playerRerpository){
+    public MatchRepositoryImpl(JPAMatchRepository matchRepository){
         this.matchRepository = matchRepository;
-        this.playerRerpository = playerRerpository;
     }
 
     @Override

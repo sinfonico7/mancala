@@ -1,12 +1,7 @@
 package org.bolcom.app.domain.models;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bolcom.app.domain.valueobjects.Email;
 
 public class User {
-
-
-
     private Email email;
 
     public User (Email email){

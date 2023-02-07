@@ -21,7 +21,8 @@ in the following controller you can create them: http://localhost:8080/swagger-u
 2.- Once the users are created, you can start a new match through the following endpoint: http://localhost:8080/swagger-ui/#/match-controller/startMatchUsingPOST
 
     {
-    "uuid": 1,
+    Id of the match Strategy id Identity by hibernate
+    "id": 1,
     "status": "RUNNING",
     "firstPlayer": {
         "id": "a5b6c8a3-c0c4-4c18-9ee1-fb8fe9b2a3bd",
@@ -39,6 +40,13 @@ in the following controller you can create them: http://localhost:8080/swagger-u
         },
         "canPlay": false
     }
+    # id = id of the match
+    # status = represent the state of the game there are two RUNNING & FINISHED
+    # firstPlayer = has the state of the firsplayer
+        * id = UUID that represent a user in a specific match
+        * pits = representation of the pits table
+        * bigPit = represent the big pit of the player
+        * canPlay = give the flag if the player can make a move, this change btween turns but depends of the rules can have extra movements this not change
 
 3.- Once the match has started, it will return the necessary resources to run the game, these data are:
     Link to make the moves: http://localhost:8080/swagger-ui/#/match-controller/makeMoveUsingPUT

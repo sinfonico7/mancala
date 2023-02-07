@@ -1,16 +1,41 @@
-# Felipe Inostroza Meneses
+API service that allows playing mancala in a MVP context and Behind DDD Principles
 
-## Description
-This project aims to introduce skills oriented to microservices programming in conjunction with Spring Boot Java.
+The purpose of this project is to demonstrate the different skills oriented to RestFul services under JAVA technology and its Spring Boot dependency injection framework.
 
-## Installation
-To run the program, first clone from the following repository in the Development branch,
-Once you have the code, access the folder called "felipe-inostroza-meneses", within that folder from a terminal run:
+Installation and execution
+NOTE : As prerequisites make sure you have maven installed on your local machine, here is a manual -> https://maven.apache.org/install.html
+
+clone project
+
+git clone https://github.com/sinfonico7/mancala.git
+
+Run the following command line in the project root:
 
 mvn spring-boot:run
 
-(note : Make sure you have Maven installed for your operating system)
+abra un navegador visite el siguiente link http://localhost:8080/swagger-ui/#/
 
-Once the code is executed, in the same root you can see that there is a folder called web-page, in it there is a folder called html in which you can visually see (and very basic) the game interface. To do this, open the index.html file in your browser.
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+1.- To test the endpoints you must first create two users who are critical to a match.
+in the following controller you can create them: http://localhost:8080/swagger-ui/#/user-controller/addUserUsingPOST
+
+2.- Once the users are created, you can start a new match through the following endpoint: http://localhost:8080/swagger-ui/#/match-controller/startMatchUsingPOST
+    
+3.- Once the match has started, it will return the necessary resources to run the game, these data are:
+    id : is a Long that identifies a particular game between two Players.
+    idPlayer : UUID it is obtained at the moment of starting the match (the player concept is given to a user participating in a match, for this reason a player has his own particular id, which positions him in a unique context of a match).
+    from : This field is an integer that allows you to indicate from which pit the stones will be taken to make a move.
+
+As a result, the match is obtained in different states of the game, which is why there are unit tests that allow evaluating each of the business rules that are the rules of the game itself.
+
+If you want to obtain information about the persistence of the objects, you can do it in the following link while the application is running.
+
+http://localhost:8080/h2-console
+
+las siguientes opciones deben coincidir en el panel:
+
+Saved Settings:	Generic H2 (Embeded)
+Setting Name: Generic H2 (Embeded)
+Driver Class: org.h2.Driver
+JDBC URL: jdbc:h2:mem:mancala
+User Name: bolcom
+Password: sa

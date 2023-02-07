@@ -35,11 +35,11 @@ public class MatchController {
         return new ResponseEntity<>(match,HttpStatus.OK);
     }
 
-    @PutMapping("/matches/{uuid}/make-move")
-    public ResponseEntity<Match> makeMove(@PathVariable Long uuid,@RequestBody MatchRequestMove requestMove){
+    @PutMapping("/matches/{id}/make-move")
+    public ResponseEntity<Match> makeMove(@PathVariable Long id,@RequestBody MatchRequestMove requestMove){
         int from = requestMove.getFrom();
         Player player = playerService.getPlayerById(requestMove.getIdPlayer());
-        return new ResponseEntity<>(matchService.makeMove(player,from,uuid),HttpStatus.OK);
+        return new ResponseEntity<>(matchService.makeMove(player,from,id),HttpStatus.OK);
     }
 
 

@@ -3,6 +3,7 @@ package org.bolcom.app.domain.services;
 import org.bolcom.app.domain.exceptions.UserException;
 import org.bolcom.app.domain.models.User;
 import org.bolcom.app.domain.repositories.UserRepository;
+import org.bolcom.app.domain.valueobjects.Email;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +23,7 @@ public class DomainUserService implements UserService {
     }
 
     @Override
-    public void addUser(String email) {
+    public void addUser(Email email) {
         userRepository.save(new User(email));
     }
 
@@ -34,8 +35,8 @@ public class DomainUserService implements UserService {
     }
 
     @Override
-    public User updateUserById(String id) {
-        Optional<User> user = userRepository.findById(id);
+    public User updateUserById(Email id) {
+        Optional<User> user = userRepository.findById(id.toString());
         if(!user.isPresent()){
             userRepository.save(new User(id));
         }

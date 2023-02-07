@@ -1,15 +1,27 @@
 package org.bolcom.app.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.bolcom.app.domain.valueobjects.Email;
+
 public class User {
 
-    private String email;
 
-    public User (String email){
+
+    private Email email;
+
+    public User (Email email){
         this.email = email;
     }
 
-    public String getEmail(){
+    public User() {
+    }
+
+    public Email getEmail(){
         return email;
     }
 
+    @Override
+    public String toString() {
+        return email.toString();
+    }
 }

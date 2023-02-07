@@ -1,4 +1,4 @@
-package org.bolcom.app.infrastracture.requests;
+package org.bolcom.app.application.requests;
 
 public class AddUserRequest {
     private String email;

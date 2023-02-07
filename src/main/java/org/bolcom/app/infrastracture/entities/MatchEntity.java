@@ -1,74 +1,66 @@
 package org.bolcom.app.infrastracture.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.bolcom.app.domain.enums.MatchStatus;
+import org.bolcom.app.domain.models.Match;
+import org.bolcom.app.domain.models.Player;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "MATCHES")
+@Data
+@Builder
+@AllArgsConstructor
 public class MatchEntity implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_user_one")
-    private String idUserOne;
-    @Column(name = "id_user_two")
-    private String idUserTwo;
-    @Column(name = "points_user_one")
-    private int pointsUserOne;
-    @Column(name = "points_user_two")
-    private int pointsUserTwo;
+
     @Column(name = "status")
-    private Enum status;
+    private MatchStatus status;
 
-    public void setId(Long id) {
-        this.id = id;
+
+
+    @OneToMany(mappedBy = "match", cascade = CascadeType.PERSIST)
+    private List<PlayerEntity> players;
+
+ /*   @OneToOne(targetEntity = PlayerEntity.class, mappedBy = "match", cascade = {CascadeType.ALL},orphanRemoval = true)
+    private PlayerEntity playerEntityOne;
+
+    @OneToOne(targetEntity = PlayerEntity.class, mappedBy = "match", cascade = {CascadeType.ALL},orphanRemoval = true)
+    private PlayerEntity playerEntityTwo;
+*/
+
+    public MatchEntity() {
+        this.status = MatchStatus.RUNNING;
     }
 
-    @Id
-    public Long getId() {
-        return id;
+    public Match toMatch(){
+        return new Match(id,status, PlayerEntity.toPlayers(players));
     }
 
-    public String getIdUserOne() {
-        return idUserOne;
-    }
+   public static MatchEntity toMatchEntity(Match match){
+         List<Player> players = new ArrayList<>();
+         players.add(match.getFirstPlayer());
+         players.add(match.getSecondPlayer());
+         List<PlayerEntity> playerEntities = players.stream().map(player -> PlayerEntity.from(player)).collect(Collectors.toList());
 
-    public String getIdUserTwo() {
-        return idUserTwo;
-    }
-
-    public int getPointsUserOne() {
-        return pointsUserOne;
-    }
-
-    public int getPointsUserTwo() {
-        return pointsUserTwo;
-    }
-
-    public Enum getStatus() {
-        return status;
-    }
-
-    public void setIdUserOne(String idUserOne) {
-        this.idUserOne = idUserOne;
-    }
-
-    public void setIdUserTwo(String idUserTwo) {
-        this.idUserTwo = idUserTwo;
-    }
-
-    public void setPointsUserOne(int pointsUserOne) {
-        this.pointsUserOne = pointsUserOne;
-    }
-
-    public void setPointsUserTwo(int pointsUserTwo) {
-        this.pointsUserTwo = pointsUserTwo;
-    }
-
-    public void setStatus(Enum status) {
-        this.status = status;
+         return MatchEntity.builder()
+                 .players(playerEntities)
+                 .id(match.getUuid())
+                 .status(match.getStatus())
+                 .build();
     }
 }

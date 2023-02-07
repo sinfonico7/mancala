@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 @Component
-public class H2Repository implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 
     private final JPAUserRepository jpaUserRepository;
 
     @Autowired
-    H2Repository (JPAUserRepository jpaUserRepository){
+    UserRepositoryImpl(JPAUserRepository jpaUserRepository){
         this.jpaUserRepository = jpaUserRepository;
     }
 
@@ -29,7 +29,7 @@ public class H2Repository implements UserRepository {
 
     @Override
     public void save(User user) {
-        jpaUserRepository.save(new UserEntity(user.getEmail()));
+        jpaUserRepository.save(new UserEntity(user.getEmail().toString()));
     }
 
     @Override
